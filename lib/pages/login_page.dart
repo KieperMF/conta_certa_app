@@ -25,9 +25,11 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              TextFormField(
+              SizedBox(
+                width: 300,
+                child: TextFormField(
                 controller: emailController,
-                decoration:const InputDecoration(hintText: 'Informe seu Email'),
+                decoration:const InputDecoration(hintText: 'Informe seu Email', ),
                 validator: (String? value) {
                   if(value!.isEmpty){
                     return 'Preencha seu Email';
@@ -38,7 +40,11 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
-              TextFormField(
+              ),
+              const Padding(padding: EdgeInsets.all(10)),
+              SizedBox(
+                width: 300,
+                child: TextFormField(
                 controller: passwordController,
                 decoration:const InputDecoration(hintText: 'Informe sua Senha'),
                 validator: (String? value) {
@@ -51,6 +57,8 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
+              ),
+              const Padding(padding: EdgeInsets.all(16)),
               ElevatedButton(onPressed: (){
                 Login();
               }, child:const Text("Login"))
