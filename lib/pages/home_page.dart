@@ -1,5 +1,6 @@
 import 'package:conta_certa/pages/login_page.dart';
 import 'package:conta_certa/services/autentication.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,10 +11,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-final autentication = AutenticationService(); 
+
+  final autentication = AutenticationService();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) {   
+    FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
     return  Scaffold(
       appBar: AppBar(
         title:const Text('Conta Certa'),
@@ -21,9 +25,12 @@ final autentication = AutenticationService();
       drawer: Drawer(
         child: ListView(
           children: [
+            UserAccountsDrawerHeader(
+              accountName: Text('${user?.displayName}'), 
+              accountEmail: Text('${user?.email}')),
             ListTile(
-              title: Text("Deslogar"),
-              leading: Icon(Icons.logout),
+              title:const Text("Deslogar"),
+              leading:const Icon(Icons.logout),
               onTap: (){
                 autentication.logout();
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
