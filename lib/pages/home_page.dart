@@ -13,10 +13,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   final autentication = AutenticationService();
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {   
-    FirebaseAuth auth = FirebaseAuth.instance;
+    
     final User? user = auth.currentUser;
     return  Scaffold(
       appBar: AppBar(
