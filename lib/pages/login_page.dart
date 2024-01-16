@@ -1,4 +1,3 @@
-import 'package:conta_certa/model/user_model.dart';
 import 'package:conta_certa/pages/home_page.dart';
 import 'package:conta_certa/pages/register_page.dart';
 import 'package:conta_certa/services/autentication.dart';
@@ -17,7 +16,6 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final autentication = AutenticationService();
-  UserModel userModel = UserModel();
 
   @override
   Widget build(BuildContext context) {
