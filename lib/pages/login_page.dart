@@ -121,12 +121,9 @@ class _LoginPageState extends State<LoginPage> {
     String email = emailController.text;
     String password = passwordController.text;
     autentication.loginUser(email: email, password: password);
-
     if (_formKey.currentState!.validate()) {
-      
     Future.delayed( const Duration(milliseconds: 1000), ()async {
       if (FirebaseAuth.instance.currentUser != null) {
-        print("credenciado");
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const HomePage()));
       } else {
