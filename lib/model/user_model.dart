@@ -8,7 +8,6 @@ class UserModel extends ChangeNotifier{
   Future<void> getUser() async {
     user = firebaseAuth.currentUser;
     if (user != null) {
-      print(user!.displayName);
       notifyListeners();
     }
   }

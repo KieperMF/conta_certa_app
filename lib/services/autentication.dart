@@ -26,7 +26,6 @@ class AutenticationService {
       
       return null;
     } on FirebaseAuthException catch (e) {
-      print("nao foi");
       return e.message;
     }
   }
