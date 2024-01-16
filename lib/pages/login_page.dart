@@ -2,6 +2,7 @@ import 'package:conta_certa/model/user_model.dart';
 import 'package:conta_certa/pages/home_page.dart';
 import 'package:conta_certa/pages/register_page.dart';
 import 'package:conta_certa/services/autentication.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,17 +22,33 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Conta Certa', style: TextStyle(color: Colors.white),),
+        actions: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RegisterPage()));
+              },
+              style:const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.green)),
+              child: const Text('Cadastro', style: TextStyle(color: Colors.white),)),
+        ],
+        backgroundColor: Colors.blue[800],
+      ),
       backgroundColor: Colors.blue[700],
       body: Form(
           key: _formKey,
           child: Center(
-            child: Column(
+            child: SingleChildScrollView(
+              child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   child: Image.asset(
-                    "images/logo3.jpg",
+                    "images/logo.jpg",
                     width: 200,
                     height: 200,
                   ),
@@ -80,14 +97,6 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const RegisterPage()));
-                        },
-                        child: const Text('Cadastro')),
                     const Padding(padding: EdgeInsets.all(16)),
                     ElevatedButton(
                       onPressed: () {
@@ -105,6 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                 )
               ],
             ),
+            )
           )),
     );
   }
@@ -112,9 +122,12 @@ class _LoginPageState extends State<LoginPage> {
   Login() {
     String email = emailController.text;
     String password = passwordController.text;
+    autentication.loginUser(email: email, password: password);
+
     if (_formKey.currentState!.validate()) {
-      autentication.loginUser(email: email, password: password);
-      if (userModel.user != null) {
+      
+    Future.delayed( const Duration(milliseconds: 1000), ()async {
+      if (FirebaseAuth.instance.currentUser != null) {
         print("credenciado");
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const HomePage()));
@@ -122,6 +135,8 @@ class _LoginPageState extends State<LoginPage> {
         ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Credenciais Inválidas')));
       }
+    });
+      
     } else {
       print('denied');
     }

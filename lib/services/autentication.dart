@@ -23,6 +23,7 @@ class AutenticationService {
       await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       print('foi carai');
+      
       return null;
     } on FirebaseAuthException catch (e) {
       print("nao foi");
