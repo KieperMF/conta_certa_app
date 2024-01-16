@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AutenticationService  {
+class AutenticationService {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   registerUser({
@@ -34,5 +34,3 @@ class AutenticationService  {
     return firebaseAuth.signOut();
   }
 }
-
-

@@ -1,4 +1,6 @@
+import 'package:conta_certa/model/user_model.dart';
 import 'package:conta_certa/pages/home_page.dart';
+import 'package:conta_certa/pages/register_page.dart';
 import 'package:conta_certa/services/autentication.dart';
 import 'package:flutter/material.dart';
 
@@ -13,70 +15,114 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final autentication = AutenticationService(); 
+  final autentication = AutenticationService();
+  UserModel userModel = UserModel();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[700],
       body: Form(
-        key: _formKey,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 300,
-                child: TextFormField(
-                controller: emailController,
-                decoration:const InputDecoration(hintText: 'Informe seu Email', ),
-                validator: (String? value) {
-                  if(value!.isEmpty){
-                    return 'Preencha seu Email';
-                  }
-                  if(!value.contains('@')){
-                    return 'Email inválido';
-                  }
-                  return null;
-                },
-              ),
-              ),
-              const Padding(padding: EdgeInsets.all(10)),
-              SizedBox(
-                width: 300,
-                child: TextFormField(
-                controller: passwordController,
-                decoration:const InputDecoration(hintText: 'Informe sua Senha'),
-                validator: (String? value) {
-                  if(value!.isEmpty){
-                    return 'Preencha sua Senha';
-                  }
-                  if(value.length < 5){
-                    return 'Senha muito curta';
-                  }
-                  return null;
-                },
-              ),
-              ),
-              const Padding(padding: EdgeInsets.all(16)),
-              ElevatedButton(onPressed: (){
-                Login();
-              }, child:const Text("Login"))
-            ],
-          ),
-        )),
+          key: _formKey,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  child: Image.asset(
+                    "images/logo3.jpg",
+                    width: 200,
+                    height: 200,
+                  ),
+                ),
+                const Padding(padding: EdgeInsets.all(16)),
+                SizedBox(
+                  width: 300,
+                  child: TextFormField(
+                    controller: emailController,
+                    decoration: const InputDecoration(
+                        hintText: 'Informe seu Email',
+                        hintStyle: TextStyle(color: Colors.white)),
+                    style: const TextStyle(color: Colors.white),
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Preencha seu Email';
+                      }
+                      if (!value.contains('@')) {
+                        return 'Email inválido';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                const Padding(padding: EdgeInsets.all(10)),
+                SizedBox(
+                  width: 300,
+                  child: TextFormField(
+                    controller: passwordController,
+                    decoration: const InputDecoration(
+                        hintText: 'Informe sua Senha',
+                        hintStyle: TextStyle(color: Colors.white)),
+                    style: const TextStyle(color: Colors.white),
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Preencha sua Senha';
+                      }
+                      if (value.length < 5) {
+                        return 'Senha muito curta';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                const Padding(padding: EdgeInsets.all(16)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const RegisterPage()));
+                        },
+                        child: const Text('Cadastro')),
+                    const Padding(padding: EdgeInsets.all(16)),
+                    ElevatedButton(
+                      onPressed: () {
+                        Login();
+                      },
+                      style: const ButtonStyle(
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.green)),
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          )),
     );
   }
 
-  Login(){
+  Login() {
     String email = emailController.text;
     String password = passwordController.text;
-
-    if(_formKey.currentState!.validate()){
-      print("credenciado");
+    if (_formKey.currentState!.validate()) {
       autentication.loginUser(email: email, password: password);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-    }else{
+      if (userModel.user != null) {
+        print("credenciado");
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Credenciais Inválidas')));
+      }
+    } else {
       print('denied');
     }
   }

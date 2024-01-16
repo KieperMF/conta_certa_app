@@ -34,14 +34,17 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title:const Text('Conta Certa'),
       ),
-      body: const Center(
+      body:  Center(
         child: Column(
           children: [
-            Text("Ola Mundo!"),
-            Padding(padding: EdgeInsets.all(16)),
-            TextField(
+            const Padding(padding: EdgeInsets.all(16)),
+            const TextField(
               decoration: InputDecoration(hintText: "informe algo"),
-            )
+            ),
+            ElevatedButton(onPressed: (){
+              autentication.logout();
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+            }, child:const Text("logout"))
           ],
         ),
       ),
