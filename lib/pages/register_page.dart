@@ -75,7 +75,7 @@ class _RegisterPageState extends State<RegisterPage> {
             }, child:const Text('Cadastrar')),
             ElevatedButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
-            }, child:const Text('Já Possui uma conta? Fazer Login'))
+            }, child:const Text('Já Possui uma conta?'))
           ],
         ),)
       ),

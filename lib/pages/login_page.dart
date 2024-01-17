@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                         hintStyle: TextStyle(color: Colors.white)),
                     style: const TextStyle(color: Colors.white),
                     validator: (String? value) {
-                      if (value == null) {
+                      if (value!.length < 2) {
                         return 'Preencha seu Email';
                       }
                       if (!value.contains('@')) {
@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                         hintStyle: TextStyle(color: Colors.white)),
                     style: const TextStyle(color: Colors.white),
                     validator: (String? value) {
-                      if (value == null) {
+                      if (value!.length < 2 ) {
                         return 'Preencha sua Senha';
                       }
                       if (value.length < 5) {
