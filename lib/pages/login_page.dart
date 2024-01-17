@@ -81,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                         hintStyle: TextStyle(color: Colors.white)),
                     style: const TextStyle(color: Colors.white),
                     validator: (String? value) {
-                      if (value!.isEmpty) {
+                      if (value == null) {
                         return 'Preencha sua Senha';
                       }
                       if (value.length < 5) {
@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                     const Padding(padding: EdgeInsets.all(16)),
                     ElevatedButton(
                       onPressed: () {
-                        Login();
+                        login();
                       },
                       style: const ButtonStyle(
                           backgroundColor:
@@ -117,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Login() {
+  login() {
     String email = emailController.text;
     String password = passwordController.text;
     autentication.loginUser(email: email, password: password);
