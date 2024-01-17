@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                         hintStyle: TextStyle(color: Colors.white)),
                     style: const TextStyle(color: Colors.white),
                     validator: (String? value) {
-                      if (value!.isEmpty) {
+                      if (value == null) {
                         return 'Preencha seu Email';
                       }
                       if (!value.contains('@')) {
@@ -122,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
     String password = passwordController.text;
     autentication.loginUser(email: email, password: password);
     if (_formKey.currentState!.validate()) {
-    Future.delayed( const Duration(milliseconds: 1000), ()async {
+    Future.delayed( const Duration(milliseconds: 1500), ()async {
       if (FirebaseAuth.instance.currentUser != null) {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => const HomePage()));
