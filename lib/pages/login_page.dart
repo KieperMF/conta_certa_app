@@ -84,9 +84,6 @@ class _LoginPageState extends State<LoginPage> {
                       if (value!.length < 2 ) {
                         return 'Preencha sua Senha';
                       }
-                      if (value.length < 5) {
-                        return 'Senha muito curta';
-                      }
                       return null;
                     },
                   ),
