@@ -19,7 +19,10 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadastro', style: TextStyle(color: Colors.white),),
+        title: const Text(
+          'Cadastro',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.blue[800],
       ),
       backgroundColor: Colors.blue[700],
@@ -31,14 +34,22 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    SizedBox(
+                      child: Image.asset(
+                        "images/logocadastro.jpg",
+                        width: 200,
+                        height: 200,
+                      ),
+                    ),
                     const Padding(padding: EdgeInsets.all(10)),
                     SizedBox(
                       width: 300,
                       child: TextFormField(
                         controller: nameController,
-                        style:const TextStyle(color: Colors.white),
-                        decoration:
-                            const InputDecoration(hintText: 'Informe seu nome', hintStyle: TextStyle(color: Colors.white)),
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
+                            hintText: 'Informe seu nome',
+                            hintStyle: TextStyle(color: Colors.white)),
                         validator: (String? value) {
                           if (value == null) {
                             return 'Preencha seu nome';
@@ -54,8 +65,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       width: 300,
                       child: TextFormField(
                         controller: emailController,
-                        style:const TextStyle(color: Colors.white),
-                        decoration: const InputDecoration(hintText: 'Email', hintStyle: TextStyle(color: Colors.white)),
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
+                            hintText: 'Email',
+                            hintStyle: TextStyle(color: Colors.white)),
                         validator: (String? value) {
                           if (value == null) {
                             return 'O E-mail não pode ser vazio';
@@ -74,8 +87,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       width: 300,
                       child: TextFormField(
                         controller: passwordController,
-                        style:const TextStyle(color: Colors.white),
-                        decoration: const InputDecoration(hintText: 'Senha', hintStyle: TextStyle(color: Colors.white)),
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
+                            hintText: 'Senha',
+                            hintStyle: TextStyle(color: Colors.white)),
                         validator: (String? value) {
                           if (value == null) {
                             return 'A senha não pode ser vazia';
@@ -92,8 +107,13 @@ class _RegisterPageState extends State<RegisterPage> {
                         onPressed: () {
                           registerMethod();
                         },
-                        style:const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.green)),
-                        child:const Text('Cadastrar', style: TextStyle(color: Colors.white),)),
+                        style: const ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(Colors.green)),
+                        child: const Text(
+                          'Cadastrar',
+                          style: TextStyle(color: Colors.white),
+                        )),
                   ],
                 ),
               ))),

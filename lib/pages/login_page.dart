@@ -21,7 +21,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Conta Certa', style: TextStyle(color: Colors.white),),
+        title: const Text(
+          'Conta Certa',
+          style: TextStyle(color: Colors.white),
+        ),
         actions: [
           ElevatedButton(
               onPressed: () {
@@ -30,8 +33,13 @@ class _LoginPageState extends State<LoginPage> {
                     MaterialPageRoute(
                         builder: (context) => const RegisterPage()));
               },
-              style:const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.green)),
-              child: const Text('Cadastrar', style: TextStyle(color: Colors.white),)),
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStatePropertyAll(Colors.green.shade700)),
+              child: const Text(
+                'Cadastrar',
+                style: TextStyle(color: Colors.white),
+              )),
         ],
         backgroundColor: Colors.blue[800],
       ),
@@ -39,8 +47,8 @@ class _LoginPageState extends State<LoginPage> {
       body: Form(
           key: _formKey,
           child: Center(
-            child: SingleChildScrollView(
-              child: Column(
+              child: SingleChildScrollView(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -81,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                         hintStyle: TextStyle(color: Colors.white)),
                     style: const TextStyle(color: Colors.white),
                     validator: (String? value) {
-                      if (value!.length < 2 ) {
+                      if (value!.length < 2) {
                         return 'Preencha sua Senha';
                       }
                       return null;
@@ -109,8 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                 )
               ],
             ),
-            )
-          )),
+          ))),
     );
   }
 
@@ -119,16 +126,15 @@ class _LoginPageState extends State<LoginPage> {
     String password = passwordController.text;
     autentication.loginUser(email: email, password: password);
     if (_formKey.currentState!.validate()) {
-    Future.delayed( const Duration(milliseconds: 1500), ()async {
-      if (FirebaseAuth.instance.currentUser != null) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Credenciais Inválidas')));
-      }
-    });
-      
+      Future.delayed(const Duration(milliseconds: 1500), () async {
+        if (FirebaseAuth.instance.currentUser != null) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const HomePage()));
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Credenciais Inválidas')));
+        }
+      });
     } else {
       print('denied');
     }
