@@ -1,4 +1,3 @@
-import 'package:conta_certa/pages/login_page.dart';
 import 'package:conta_certa/services/autentication.dart';
 import 'package:flutter/material.dart';
 
@@ -20,16 +19,10 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadastro'),
-        actions: [
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()));
-              },
-              child: const Text('Login')),
-        ],
+        title: const Text('Cadastro', style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.blue[800],
       ),
+      backgroundColor: Colors.blue[700],
       body: Center(
           child: Form(
               key: _formKey,
@@ -43,8 +36,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       width: 300,
                       child: TextFormField(
                         controller: nameController,
+                        style:const TextStyle(color: Colors.white),
                         decoration:
-                            const InputDecoration(hintText: 'Informe seu nome'),
+                            const InputDecoration(hintText: 'Informe seu nome', hintStyle: TextStyle(color: Colors.white)),
                         validator: (String? value) {
                           if (value == null) {
                             return 'Preencha seu nome';
@@ -60,7 +54,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       width: 300,
                       child: TextFormField(
                         controller: emailController,
-                        decoration: const InputDecoration(hintText: 'Email'),
+                        style:const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(hintText: 'Email', hintStyle: TextStyle(color: Colors.white)),
                         validator: (String? value) {
                           if (value == null) {
                             return 'O E-mail não pode ser vazio';
@@ -79,7 +74,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       width: 300,
                       child: TextFormField(
                         controller: passwordController,
-                        decoration: const InputDecoration(hintText: 'Senha'),
+                        style:const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(hintText: 'Senha', hintStyle: TextStyle(color: Colors.white)),
                         validator: (String? value) {
                           if (value == null) {
                             return 'A senha não pode ser vazia';
@@ -96,7 +92,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         onPressed: () {
                           registerMethod();
                         },
-                        child: const Text('Cadastrar')),
+                        style:const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.green)),
+                        child:const Text('Cadastrar', style: TextStyle(color: Colors.white),)),
                   ],
                 ),
               ))),

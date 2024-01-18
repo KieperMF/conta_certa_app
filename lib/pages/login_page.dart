@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
                         builder: (context) => const RegisterPage()));
               },
               style:const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.green)),
-              child: const Text('Cadastro', style: TextStyle(color: Colors.white),)),
+              child: const Text('Cadastrar', style: TextStyle(color: Colors.white),)),
         ],
         backgroundColor: Colors.blue[800],
       ),
