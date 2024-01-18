@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
       body:  Center(
         child: Column(
           children: [
+            const Text("Home Page"),
             const Padding(padding: EdgeInsets.all(16)),
             const TextField(
               decoration: InputDecoration(hintText: "informe algo"),
