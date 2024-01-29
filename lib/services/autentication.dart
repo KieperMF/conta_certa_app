@@ -8,7 +8,6 @@ class AutenticationService extends ChangeNotifier {
   Future<void> getUser() async {
     user = firebaseAuth.currentUser;
     if (user != null) {
-      print(user!.displayName);
       notifyListeners();
     }
   }
@@ -32,7 +31,6 @@ class AutenticationService extends ChangeNotifier {
     try {
       await firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
-      print('foi carai');
       
       return null;
     } on FirebaseAuthException catch (e) {

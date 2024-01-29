@@ -127,14 +127,10 @@ class _RegisterPageState extends State<RegisterPage> {
     String password = passwordController.text;
 
     if (_formKey.currentState!.validate()) {
-      print('valido');
       _autentication.registerUser(
           userName: name, userEmail: email, userPassword: password);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => const LoginPage()));
-      print('${emailController.text} ${passwordController.text}');
-    } else {
-      print('invalido');
     }
   }
 }

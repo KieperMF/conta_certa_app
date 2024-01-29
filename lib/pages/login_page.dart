@@ -135,8 +135,6 @@ class _LoginPageState extends State<LoginPage> {
               const SnackBar(content: Text('Credenciais Inválidas')));
         }
       });
-    } else {
-      print('denied');
     }
   }
 }
