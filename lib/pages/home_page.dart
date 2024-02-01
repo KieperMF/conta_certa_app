@@ -30,24 +30,6 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Home Page'),
       ),
-      body: Center(
-          child: ListenableBuilder(
-              listenable: autentication,
-              builder: (context, _) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Padding(padding: EdgeInsets.all(16)),
-                    if (autentication.user != null) ...[
-                      Text(
-                        "Bem vindo, ${autentication.user!.displayName}",
-                        style: const TextStyle(fontSize: 20),
-                      )
-                    ],
-                  ],
-                );
-              })),
       drawer: Drawer(
         child: ListenableBuilder(
             listenable: autentication,
@@ -76,6 +58,24 @@ class _HomePageState extends State<HomePage> {
               }
             }),
       ),
+      body: Center(
+          child: ListenableBuilder(
+              listenable: autentication,
+              builder: (context, _) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Padding(padding: EdgeInsets.all(16)),
+                    if (autentication.user != null) ...[
+                      Text(
+                        "Bem vindo, ${autentication.user!.displayName}",
+                        style: const TextStyle(fontSize: 20),
+                      )
+                    ],
+                  ],
+                );
+              })),
     );
   }
 }
