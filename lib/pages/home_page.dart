@@ -38,8 +38,8 @@ class _HomePageState extends State<HomePage> {
                 return ListView(
                   children: [
                     UserAccountsDrawerHeader(
-                        accountName: Text('${autentication.user!.displayName}'),
-                        accountEmail: Text('${autentication.user!.email}')),
+                        accountName: Text('${autentication.user!.displayName}', style:const TextStyle(fontSize: 16)),
+                        accountEmail: Text('${autentication.user!.email}', style:const TextStyle(fontSize: 16))),
                     ListTile(
                       title: const Text("Deslogar"),
                       leading: const Icon(Icons.logout),
@@ -54,7 +54,24 @@ class _HomePageState extends State<HomePage> {
                   ],
                 );
               } else {
-                return const Text("erro");
+                return ListView(
+                  children: [
+                    const UserAccountsDrawerHeader(
+                        accountName: Text('Não foi possível carregar', style: TextStyle(fontSize: 20)),
+                        accountEmail: Text('as informações', style: TextStyle(fontSize: 20),)),
+                    ListTile(
+                      title: const Text("Deslogar"),
+                      leading: const Icon(Icons.logout),
+                      onTap: () {
+                        autentication.logout();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()));
+                      },
+                    )
+                  ],
+                );
               }
             }),
       ),
