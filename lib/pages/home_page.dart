@@ -1,4 +1,3 @@
-import 'package:conta_certa/pages/login_page.dart';
 import 'package:conta_certa/services/autentication.dart';
 import 'package:flutter/material.dart';
 
@@ -45,10 +44,7 @@ class _HomePageState extends State<HomePage> {
                       leading: const Icon(Icons.logout),
                       onTap: () {
                         autentication.logout();
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginPage()));
+                        Navigator.of(context).pop();
                       },
                     )
                   ],
@@ -64,10 +60,7 @@ class _HomePageState extends State<HomePage> {
                       leading: const Icon(Icons.logout),
                       onTap: () {
                         autentication.logout();
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const LoginPage()));
+                        Navigator.of(context).pop();
                       },
                     )
                   ],
