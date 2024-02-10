@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
                   backgroundColor:
                       MaterialStatePropertyAll(Colors.green.shade700)),
               child: const Text(
-                'Cadastrar',
+                'Cadastro',
                 style: TextStyle(color: Colors.white),
               )),
         ],

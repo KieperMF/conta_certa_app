@@ -29,47 +29,10 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Home Page'),
       ),
-      drawer: Drawer(
-        child: ListenableBuilder(
-            listenable: autentication,
-            builder: (context, _) {
-              if (autentication.user != null) {
-                return ListView(
-                  children: [
-                    UserAccountsDrawerHeader(
-                        accountName: Text('${autentication.user!.displayName}', style:const TextStyle(fontSize: 16)),
-                        accountEmail: Text('${autentication.user!.email}', style:const TextStyle(fontSize: 16))),
-                    ListTile(
-                      title: const Text("Deslogar"),
-                      leading: const Icon(Icons.logout),
-                      onTap: () {
-                        autentication.logout();
-                        Navigator.of(context).pop();
-                      },
-                    )
-                  ],
-                );
-              } else {
-                return ListView(
-                  children: [
-                    const UserAccountsDrawerHeader(
-                        accountName: Text('Não foi possível carregar', style: TextStyle(fontSize: 20)),
-                        accountEmail: Text('as informações', style: TextStyle(fontSize: 20),)),
-                    ListTile(
-                      title: const Text("Deslogar"),
-                      leading: const Icon(Icons.logout),
-                      onTap: () {
-                        autentication.logout();
-                        Navigator.of(context).pop();
-                      },
-                    )
-                  ],
-                );
-              }
-            }),
-      ),
       body: Center(
-          child: ListenableBuilder(
+          child: Column(
+        children: [
+          ListenableBuilder(
               listenable: autentication,
               builder: (context, _) {
                 return Column(
@@ -85,7 +48,54 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ],
                 );
-              })),
+              })
+        ],
+      )),
+      drawer: Drawer(
+        child: ListenableBuilder(
+            listenable: autentication,
+            builder: (context, _) {
+              if (autentication.user != null) {
+                return ListView(
+                  children: [
+                    UserAccountsDrawerHeader(
+                        accountName: Text('${autentication.user!.displayName}',
+                            style: const TextStyle(fontSize: 16)),
+                        accountEmail: Text('${autentication.user!.email}',
+                            style: const TextStyle(fontSize: 16))),
+                    ListTile(
+                      title: const Text("Deslogar"),
+                      leading: const Icon(Icons.logout),
+                      onTap: () {
+                        autentication.logout();
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ],
+                );
+              } else {
+                return ListView(
+                  children: [
+                    const UserAccountsDrawerHeader(
+                        accountName: Text('Não foi possível carregar',
+                            style: TextStyle(fontSize: 20)),
+                        accountEmail: Text(
+                          'as informações',
+                          style: TextStyle(fontSize: 20),
+                        )),
+                    ListTile(
+                      title: const Text("Deslogar"),
+                      leading: const Icon(Icons.logout),
+                      onTap: () {
+                        autentication.logout();
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ],
+                );
+              }
+            }),
+      ),
     );
   }
 }
